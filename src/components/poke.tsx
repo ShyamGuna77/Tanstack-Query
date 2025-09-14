@@ -1,50 +1,27 @@
-"use client";
-
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
 
 async function fetchPokemon(id: number) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 5000); // 2s timeout
-
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
-    signal: controller.signal,
-  });
-  clearTimeout(timeout);
-
-  if (!res.ok) throw new Error(`pokemon with id ${id} not found`);
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  if (!res.ok) throw new Error("Not found");
   return res.json();
 }
 
-const Pokemon = ({ id }: { id: number }) => {
-  const { data, isLoading, isError, error } = useQuery({
+export default function Pokemon({ id }: { id?: number }) {
+  const query = useQuery({
     queryKey: ["pokemon", id],
-    queryFn: async ({ queryKey }) => {
-      const [_, name] = queryKey;
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-      if (!res.ok) throw new Error("Not found");
-      return res.json();
-    },
+    queryFn: () => fetchPokemon(id!), // 👈 `!` because TS complains if id is undefined
+    enabled: !!id, // 👈 only run if id is truthy
   });
+
+  if (!id) return <p>Enter a Pokémon ID</p>;
+  if (query.isLoading) return <p>Loading...</p>;
+  if (query.error) return <p>Error: {(query.error as Error).message}</p>;
+
   return (
-    <div>
-      {isLoading && (
-        <div className="text-2xl font-bold flex flex-col  min-h-screen items-center justify-center">
-          Loading...
-        </div>
-      )}
-      {isError && (
-        <div className="text-2xl font-bold flex flex-col  min-h-screen items-center justify-center">
-          Error {error.message}
-        </div>
-      )}
-      {data && (
-        <div className="text-2xl font-bold flex  items-center justify-center">
-          {data.name}
-        </div>
-      )}
+    <div className="text-2xl font-bold flex flex-col  min-h-screen items-center justify-center">
+      <h2>{query.data.name}</h2>
+      <img src={query.data.sprites.front_default} alt={query.data.name} />
+      
     </div>
   );
-};
-
-export default Pokemon;
+}
