@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/sonner"
 import { Geist, Geist_Mono } from "next/font/google";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Providers from "./providers";
 import "./globals.css";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased` }
       >
         <Providers>
+           <ReactQueryDevtools initialIsOpen={false} />
           {children}
         </Providers>
         <Toaster />
