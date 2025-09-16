@@ -7,6 +7,19 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "pokeapi.co" },
       { protocol: "https", hostname: "img.pokemondb.net" },
       { protocol: "https", hostname: "assets.pokemon.com" },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "media.istockphoto.com",
+      },
+      {
+        protocol: "https",
+        hostname: "media.istockphoto.com",
+      },
+      
     ],
   },
 };
