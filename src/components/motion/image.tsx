@@ -57,7 +57,7 @@ const ImageAnimate = () => {
       {images.map((image) => (
         <motion.div
           key={`image-${image.id}`}
-          variants={imageVariants}
+        
           whileHover={{
             scale: 1.05,
             transition: { duration: 0.2 },
