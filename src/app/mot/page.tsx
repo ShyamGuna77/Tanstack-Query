@@ -1,8 +1,6 @@
-import FakeStoreDashboard from '@/components/query/dynamic-query'
 
-import React from 'react'
-import ImageAnimate from '@/components/motion/image'
-import DynamicQuery from '@/components/query/dynamic-query'
+import React from "react";
+import FakeStoreDashboard from '@/components/query/dynamic-query'
 export default function MotionAnimate() {
   return (
     <div>
