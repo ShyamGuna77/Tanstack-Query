@@ -1,12 +1,12 @@
 
-
-
-import React from 'react'
-import ImageAnimate from '@/components/motion/image'
+import React from "react";
+import FakeStoreDashboard from '@/components/query/dynamic-query'
 export default function MotionAnimate() {
   return (
     <div>
-      <ImageAnimate />
+      {/* <ImageAnimate /> */}
+      {/* <DynamicQuery /> */}
+      <FakeStoreDashboard />
     </div>
   )
 }
