@@ -44,7 +44,7 @@ function useProduct(id: number) {
 export default function ProductPage({ params }: { params:{ id: string } }) {
   const id = Number(params.id);
   const { data, isError, status } = useProduct(id);
-  if (status === "pending") return <div>Loading...</div>;
+  if (status === "pending") return <div className="text-center flex items-center justify-center h-screen">Loading...</div>;
   if (status === "error")
     return <div>Error: {(isError as unknown as Error).message}</div>;
   return (

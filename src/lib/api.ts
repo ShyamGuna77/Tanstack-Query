@@ -9,6 +9,43 @@ export type Product = {
   rating: { rate: number; count: number; };
 };
 
+// lib/pokeApi.ts
+
+export type PokemonListResponse = {
+  results: { name: string; url: string }[];
+};
+
+export type PokemonDetails = {
+  id: number;
+  name: string;
+  sprites: {
+    front_default: string;
+    other?: {
+      "official-artwork"?: {
+        front_default: string;
+      };
+    };
+  };
+};
+
+const PAGE_SIZE = 10;
+
+export async function fetchPokemonPage(page: number) {
+  const offset = (page - 1) * PAGE_SIZE;
+  const res = await fetch(
+    `https://pokeapi.co/api/v2/pokemon?limit=${PAGE_SIZE}&offset=${offset}`
+  );
+  if (!res.ok) throw new Error("Failed to fetch Pokémon list");
+  return res.json() as Promise<PokemonListResponse>;
+}
+
+export async function fetchPokemonDetails(url: string) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Failed to fetch Pokémon details");
+  return res.json() as Promise<PokemonDetails>;
+}
+
+
 
 export async function fetchRepos() {
   const res = await fetch("https://api.github.com/orgs/calcom/repos");
