@@ -3,7 +3,7 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery, useQueries } from "@tanstack/react-query";
+import { useQuery, useQueries, keepPreviousData } from "@tanstack/react-query";
 import {
   fetchPokemonPage,
   fetchPokemonDetails,
@@ -26,6 +26,7 @@ export default function PgImage() {
       data?.results.map((pokemon) => ({
         queryKey: ["pokemon", pokemon.name],
         queryFn: () => fetchPokemonDetails(pokemon.url),
+        placeholderData:(prev:PokemonDetails)=>prev,
         staleTime: 1000 * 60,
       })) ?? [],
   });
