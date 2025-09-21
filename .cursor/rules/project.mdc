@@ -1,0 +1,53 @@
+---
+description: Next.js project with Hono API routes, Bun package manager, and Framer Motion animations
+globs: ["**/*.{ts,tsx,js,jsx}"]
+alwaysApply: true
+---
+
+# Next.js + Hono + Bun + Framer Motion Project Rules
+
+## Package Manager
+- **Always use Bun** as the package manager
+- Use `bun install` instead of `npm install` or `yarn install`
+- Use `bun run` for running scripts
+- Use `bun add` and `bun remove` for dependency management
+- Reference bun scripts in package.json with `bun run <script-name>`
+
+## API Routes with Hono
+- Use **Hono.js** for all API routes instead of Next.js API routes
+- Place Hono routes in `src/app/api/[...route]/route.ts` using the catch-all dynamic route
+- Structure API endpoints using Hono's routing system:
+
+```typescript
+import { Hono } from 'hono'
+import { handle } from 'hono/vercel'
+
+const app = new Hono().basePath('/api')
+
+app.get('/health', (c) => {
+  return c.json({ status: 'ok', timestamp: new Date().toISOString() })
+})
+
+app.post('/users', async (c) => {
+  const body = await c.req.json()
+  // Handle user creation
+  return c.json({ success: true, data: body })
+})
+
+export const GET = handle(app)
+export const POST = handle(app)
+export const PUT = handle(app)
+export const DELETE = handle(app)
+
+```
+
+
+- Use TypeScript with Hono for type safety
+- Follow RESTful conventions for API endpoints
+- Animations with Framer Motion
+- Use Framer Motion (motion/react) for all animations
+- Import {motion} from 'motion/react'
+- Prefer motion components over regular HTML elements for animated elements
+- Use consistent animation variants and transitions:
+- use Shadcn elements if present 
+

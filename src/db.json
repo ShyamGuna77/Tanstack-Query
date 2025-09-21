@@ -1,22 +1,35 @@
-[
-  {
-    "id": 1,
-    "name": "raichu",
-    "power": "electric"
-  },
-  {
-    "id": 2,
-    "name": "pika",
-    "power": "electric"
-  },
-  {
-    "id": 3,
-    "name": "sxcdvf",
-    "power": "kkks"
-  },
-  {
-    "id": 4,
-    "name": "hello",
-    "power": "hiii"
-  }
-]
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Buy groceries",
+      "description": "Buy groceries for the week",
+      "completed": false,
+      "createdAt": "2025-09-21T10:45:08.008Z",
+      "updatedAt": "2025-09-21T11:54:27.486Z"
+    },
+    {
+      "id": "1758451508008",
+      "title": "right",
+      "description": "left",
+      "completed": false,
+      "createdAt": "2025-09-21T10:45:08.008Z",
+      "updatedAt": "2025-09-21T10:45:21.963Z"
+    },
+    {
+      "id": "1758455596862",
+      "title": "this",
+      "description": "That",
+      "completed": false,
+      "createdAt": "2025-09-21T11:53:16.863Z",
+      "updatedAt": "2025-09-21T11:54:48.875Z"
+    },
+    {
+      "id": "1758455704850",
+      "title": "Hello",
+      "description": "How are you",
+      "completed": false,
+      "createdAt": "2025-09-21T11:55:04.850Z"
+    }
+  ]
+}
